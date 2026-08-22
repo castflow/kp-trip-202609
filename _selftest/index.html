@@ -1,0 +1,93 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="googlebot" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>전라도 — 여기 가본 사람?</title>
+<style id="lockcss">
+:root{--bg:#fbfaf8;--fg:#1e1b16;--mut:#6f6759;--line:#e4dfd5;--ac:#8a5a2b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.6 -apple-system,"Segoe UI","Malgun Gothic",sans-serif;
+ min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.box{width:100%;max-width:340px;text-align:center}
+h1{font-size:20px;margin:0 0 6px;letter-spacing:-.3px}
+.lead{color:var(--mut);font-size:14px;margin:0 0 20px}
+input[type=password]{width:100%;padding:12px 14px;font-size:16px;border:1px solid var(--line);
+ border-radius:9px;background:#fff;color:var(--fg);font-family:inherit}
+input[type=password]:focus{outline:none;border-color:var(--ac)}
+button{width:100%;margin-top:10px;padding:12px;font-size:15px;font-weight:600;
+ border:0;border-radius:9px;background:var(--ac);color:#fff;cursor:pointer;font-family:inherit}
+button:disabled{opacity:.55;cursor:default}
+.rm{display:flex;align-items:center;justify-content:center;gap:7px;
+ margin-top:13px;font-size:13.5px;color:var(--mut);cursor:pointer}
+.rm input{accent-color:var(--ac);width:15px;height:15px}
+.err{color:#8c3b2e;font-size:13.5px;margin-top:12px;min-height:19px}
+.hid{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+</style>
+<div class="box" id="lock">
+<h1>전라도 — 여기 가본 사람?</h1>
+<p class="lead">비밀번호를 넣어 주세요.</p>
+<form id="f" action="#" method="post">
+<input class="hid" type="text" name="username" value="trip" autocomplete="username"
+ tabindex="-1" aria-hidden="true" readonly>
+<input id="p" name="password" type="password" autocomplete="current-password"
+ placeholder="비밀번호" autofocus>
+<button id="b" type="submit">열기</button>
+</form>
+<label class="rm"><input id="rm" type="checkbox">이 기기에서 기억하기</label>
+<div class="err" id="e"></div>
+</div>
+<script>
+var C = {"salt": "H78P0u08dBTFgJu1Agn4wA==", "iv": "Q/xgtNjk1nv9AOlW", "data": "09DwVWfmh40twTPbpvbadD6aMIzlpzOCsLSJVpOq45kBGLOz1GW791DyxiyTBecnsZS6sFwJz/8gjAZJHerlwwe577h3MuUrUMb+xBjnE/4+moHHCx6KYr+a49H0TgKr1RDkxaPIK685prGHyDcyL9IBZpgwcnQzPOkbXfIrFmVJJxMwnX0TCa0gOS4=", "iter": 310000};
+var KEY = 'trip-unlock';
+function b(s){var r=atob(s),a=new Uint8Array(r.length);
+ for(var i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a;}
+
+async function decrypt(pw){
+  var km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),
+    'PBKDF2',false,['deriveKey']);
+  var key=await crypto.subtle.deriveKey(
+    {name:'PBKDF2',salt:b(C.salt),iterations:C.iter,hash:'SHA-256'},
+    km,{name:'AES-GCM',length:256},false,['decrypt']);
+  var out=await crypto.subtle.decrypt({name:'AES-GCM',iv:b(C.iv)},key,b(C.data));
+  return new TextDecoder().decode(out);
+}
+
+// 문서를 갈아엎지 않고 끼워 넣는다 — document.write를 쓰면
+// 비밀번호 관리자의 「저장할까요?」 프롬프트가 같이 사라진다.
+function reveal(html){
+  var doc=new DOMParser().parseFromString(html,'text/html');
+  var old=document.getElementById('lockcss'); if(old) old.remove();
+  doc.head.querySelectorAll('style').forEach(function(s){document.head.appendChild(s);});
+  document.body.innerHTML=doc.body.innerHTML;
+  window.scrollTo(0,0);
+}
+
+async function tryOpen(pw, remember){
+  var html=await decrypt(pw);            // 틀리면 여기서 예외
+  if(remember){ try{localStorage.setItem(KEY,pw);}catch(_){} }
+  reveal(html);
+  return true;
+}
+
+document.getElementById('f').addEventListener('submit', async function(ev){
+  ev.preventDefault();
+  var btn=document.getElementById('b'), err=document.getElementById('e');
+  btn.disabled=true; btn.textContent='여는 중…'; err.textContent='';
+  try{
+    await tryOpen(document.getElementById('p').value, document.getElementById('rm').checked);
+  }catch(_){
+    err.textContent='비밀번호가 맞지 않습니다.';
+    btn.disabled=false; btn.textContent='열기';
+    document.getElementById('p').select();
+  }
+});
+
+// 기억해 둔 것이 있으면 바로 연다. 실패하면 조용히 지우고 폼을 보여준다.
+(async function(){
+  var saved=null; try{saved=localStorage.getItem(KEY);}catch(_){}
+  if(!saved) return;
+  try{ await tryOpen(saved,false); }
+  catch(_){ try{localStorage.removeItem(KEY);}catch(_){} }
+})();
+</script>
