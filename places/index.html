@@ -2,143 +2,86 @@
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
 <meta name="googlebot" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
-<title>장소 목록</title>
-<style id="lockcss">
-:root{--bg:#fbfaf8;--fg:#1e1b16;--mut:#6f6759;--line:#e4dfd5;--ac:#8a5a2b}
+<title>전라도 — 여기 가본 사람?</title>
+<style>
+:root{--bg:#fbfaf8;--fg:#1e1b16;--mut:#6f6759;--line:#e4dfd5;--card:#fff;--ac:#8a5a2b}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);
- font:16px/1.6 -apple-system,"Segoe UI","Malgun Gothic",sans-serif;
- min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-.box{width:100%;max-width:340px;text-align:center}
-h1{font-size:20px;margin:0 0 6px;letter-spacing:-.3px}
-.lead{color:var(--mut);font-size:14px;margin:0 0 20px}
-input[type=password]{width:100%;padding:12px 14px;font-size:16px;border:1px solid var(--line);
- border-radius:9px;background:#fff;color:var(--fg);font-family:inherit}
-input[type=password]:focus{outline:none;border-color:var(--ac)}
-button{width:100%;margin-top:10px;padding:12px;font-size:15px;font-weight:600;
- border:0;border-radius:9px;background:var(--ac);color:#fff;cursor:pointer;font-family:inherit}
-button:disabled{opacity:.55;cursor:default}
-.rm{display:flex;align-items:center;justify-content:center;gap:7px;
- margin-top:13px;font-size:13.5px;color:var(--mut);cursor:pointer}
-.rm input{accent-color:var(--ac);width:15px;height:15px}
-.err{color:#8c3b2e;font-size:13.5px;margin-top:12px;min-height:19px}
-.hid{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+ font:16px/1.6 -apple-system,"Segoe UI","Malgun Gothic",sans-serif;padding:26px 15px 70px}
+.wrap{max-width:720px;margin:0 auto}
+h1{font-size:24px;margin:0 0 5px;letter-spacing:-.4px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:20px}
+.ask{background:#f4f1ec;border-radius:11px;padding:14px 16px;margin-bottom:24px;font-size:14.5px}
+.ask b{color:var(--ac)}
+h2{font-size:13px;letter-spacing:.6px;color:var(--ac);margin:26px 0 9px;
+ text-transform:uppercase;font-weight:700}
+.p{background:var(--card);border:1px solid var(--line);border-radius:10px;
+ padding:11px 14px;margin:7px 0;display:flex;gap:12px;align-items:baseline}
+.nm{font-weight:600;font-size:15.5px}
+.t{margin-left:auto;white-space:nowrap;font-size:13px;color:var(--ac);font-weight:600}
+.ds{display:block;color:var(--mut);font-size:13.5px;margin-top:2px;line-height:1.5}
+.body{flex:1}
+.foot{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);
+ color:var(--mut);font-size:13px;line-height:1.7}
+@media print{body{background:#fff;padding:0}.p{break-inside:avoid}}
 </style>
-<div class="box" id="lock">
-<h1>장소 목록</h1>
-<p class="lead">비밀번호를 넣어 주세요.</p>
-<form id="f" action="#" method="post">
-<input class="hid" type="text" name="username" value="trip" autocomplete="username"
- tabindex="-1" aria-hidden="true" readonly>
-<input id="p" name="password" type="password" autocomplete="current-password"
- placeholder="비밀번호" autofocus>
-<button id="b" type="submit">열기</button>
-</form>
-<label class="rm"><input id="rm" type="checkbox" checked>이 기기에서 기억하기</label>
-<div class="err" id="e"></div>
+<div class="wrap">
+<h1>전라도 — 여기 가본 사람?</h1>
+<div class="sub">9월에 다녀오려고 추린 곳들 · 총 34곳</div>
+<div class="ask">
+가본 데 있으면 알려줘. 특히 이게 궁금해.<br>
+· <b>이 시간이면 충분한가</b> — 너무 짧거나 길게 잡은 데 있는지<br>
+· <b>굳이 안 가도 되는 곳</b> — 사진만 예쁘고 실제로는 별거 없는 데<br>
+· <b>빠진 곳</b> — 이 동네 갔으면 여기는 꼭 봐야 한다는 곳
 </div>
-<script>
-var C = {"salt": "vLmWi+df4UlcXtwPomxgnQ==", "iv": "1wWVzEuwFKZo7BtS", "data": "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", "iter": 310000};
-var BACK = "../";          // 목차로 돌아가는 링크. 허브 자신은 null.
-var KEY = 'trip-unlock';
-function b(s){var r=atob(s),a=new Uint8Array(r.length);
- for(var i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a;}
-
-async function decrypt(pw){
-  if(!crypto.subtle) throw new Error('nosubtle');   // http 등 비보안 출처
-  var km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),
-    'PBKDF2',false,['deriveKey']);
-  var key=await crypto.subtle.deriveKey(
-    {name:'PBKDF2',salt:b(C.salt),iterations:C.iter,hash:'SHA-256'},
-    km,{name:'AES-GCM',length:256},false,['decrypt']);
-  var out=await crypto.subtle.decrypt({name:'AES-GCM',iv:b(C.iv)},key,b(C.data));
-  return new TextDecoder().decode(out);
-}
-
-// document.write로 문서를 갈아엎지 않는다 —
-// 그러면 비밀번호 관리자의 「저장할까요?」 프롬프트도 같이 사라진다.
-function addBack(){
-  if(!BACK) return;
-  var a=document.createElement('a');
-  a.href=BACK; a.textContent='← 목차';
-  a.style.cssText='position:fixed;left:12px;top:12px;z-index:99999;'+
-    'background:rgba(255,255,255,.94);border:1px solid #e4dfd5;border-radius:8px;'+
-    'padding:6px 11px;font:13px -apple-system,"Segoe UI","Malgun Gothic",sans-serif;'+
-    'color:#8a5a2b;text-decoration:none;box-shadow:0 1px 4px rgba(0,0,0,.08)';
-  document.body.appendChild(a);
-}
-
-// 외부 스크립트는 로드가 끝나기를 기다렸다가 다음 것을 붙인다.
-// 그냥 붙이면 async라 순서가 깨진다 — Leaflet이 오기 전에
-// L을 쓰는 코드가 먼저 돌아 지도가 안 그려졌다.
-async function runScripts(root){
-  var list = root.querySelectorAll('script');   // Document이면 head+body 모두
-  for (var i=0; i<list.length; i++){
-    var old = list[i];
-    await new Promise(function(done){
-      var n = document.createElement('script');
-      for (var j=0; j<old.attributes.length; j++){
-        var at = old.attributes[j];
-        n.setAttribute(at.name, at.value);
-      }
-      if (old.src){
-        n.async = false;
-        n.onload = done; n.onerror = done;
-        document.body.appendChild(n);
-      } else {
-        n.textContent = old.textContent;
-        document.body.appendChild(n);
-        done();
-      }
-    });
-  }
-}
-
-async function reveal(html){
-  var doc=new DOMParser().parseFromString(html,'text/html');
-  var old=document.getElementById('lockcss'); if(old) old.remove();
-  doc.head.querySelectorAll('style').forEach(function(s){document.head.appendChild(s);});
-  doc.head.querySelectorAll('link[rel=stylesheet]').forEach(function(s){document.head.appendChild(s);});
-  document.body.innerHTML=doc.body.innerHTML;   // innerHTML로는 script가 안 돌아간다
-  addBack();
-  window.scrollTo(0,0);
-  await runScripts(doc);   // head에 있는 <script src>까지 문서 순서대로
-}
-
-function remember(pw, persist){
-  try{sessionStorage.setItem(KEY,pw);}catch(_){}          // 이번 방문 동안
-  if(persist){ try{localStorage.setItem(KEY,pw);}catch(_){} }
-}
-function forget(){
-  try{sessionStorage.removeItem(KEY);}catch(_){}
-  try{localStorage.removeItem(KEY);}catch(_){}
-}
-
-document.getElementById('f').addEventListener('submit', async function(ev){
-  ev.preventDefault();
-  var btn=document.getElementById('b'), err=document.getElementById('e');
-  btn.disabled=true; btn.textContent='여는 중…'; err.textContent='';
-  try{
-    var pw=document.getElementById('p').value;
-    var html=await decrypt(pw);
-    remember(pw, document.getElementById('rm').checked);
-    await reveal(html);
-  }catch(ex){
-    err.textContent = (ex && ex.message==='nosubtle')
-      ? '이 브라우저에서는 열 수 없습니다 (https로 접속해 주세요).'
-      : '비밀번호가 맞지 않습니다.';
-    btn.disabled=false; btn.textContent='열기';
-    document.getElementById('p').select();
-  }
-});
-
-// 이미 푼 적이 있으면 묻지 않고 연다. 실패하면 조용히 지우고 폼을 보여준다.
-(async function(){
-  var saved=null;
-  try{saved=sessionStorage.getItem(KEY);}catch(_){}
-  if(!saved){ try{saved=localStorage.getItem(KEY);}catch(_){} }
-  if(!saved) return;
-  try{ var html=await decrypt(saved); remember(saved,false); await reveal(html); }
-  catch(_){ forget(); }
-})();
-</script>
+<h2>전주</h2>
+<div class="p"><div class="body"><span class="nm">전주수목원</span><span class="ds">무료 수목원. 전주 북쪽 덕진구</span></div><span class="t">1시간 10분</span></div>
+<div class="p"><div class="body"><span class="nm">치명자산 성지</span><span class="ds">천주교 순교 성지. 전주 시내가 내려다보인다. 올라가는 길이 가파르다</span></div><span class="t">50분</span></div>
+<div class="p"><div class="body"><span class="nm">전동성당</span><span class="ds">1914년, 호남 최초의 서양식 근대 건축. 한옥마을 바로 옆. 야간 조명이 유명</span></div><span class="t">30분</span></div>
+<div class="p"><div class="body"><span class="nm">전주한옥마을</span></div><span class="t">1시간</span></div>
+<div class="p"><div class="body"><span class="nm">전주왱이콩나물국밥전문점</span><span class="ds">40년째 콩나물국밥만 하는 집. 모주도 유명 — 개인적 최애</span></div><span class="t">1시간</span></div>
+<h2>군산 · 익산</h2>
+<div class="p"><div class="body"><span class="nm">군산근대역사박물관</span><span class="ds">일제강점기 근대문화거리 일대를 걸어서 본다</span></div><span class="t">1시간 20분</span></div>
+<div class="p"><div class="body"><span class="nm">나바위성당</span><span class="ds">1906년. 김대건 신부가 사제 서품 뒤 상륙한 자리. 한옥과 서양식이 섞인 성당</span></div><span class="t">50분</span></div>
+<div class="p"><div class="body"><span class="nm">국립익산박물관</span><span class="ds">백제 유적. 박물관이 지하에 있고 나오면 바로 석탑</span></div><span class="t">1시간 30분</span></div>
+<div class="p"><div class="body"><span class="nm">미륵사지</span><span class="ds">국보 미륵사지 석탑. 박물관에서 바로 이어진다</span></div><span class="t">25분</span></div>
+<h2>부안 · 고창</h2>
+<div class="p"><div class="body"><span class="nm">채석강</span><span class="ds">층층이 쌓인 해식 절벽. ★물때를 맞춰야 들어갈 수 있다</span></div><span class="t">1시간 30분</span></div>
+<div class="p"><div class="body"><span class="nm">내소사</span><span class="ds">전나무길이 좋다는 절</span></div><span class="t">1시간</span></div>
+<div class="p"><div class="body"><span class="nm">선운사</span><span class="ds">꽃무릇. 도솔천 물가 구간</span></div><span class="t">1시간 15분</span></div>
+<h2>목포</h2>
+<div class="p"><div class="body"><span class="nm">국립해양유물전시관</span><span class="ds">고려 시대 난파선을 건져 전시한다. 무료</span></div><span class="t">1시간 40분</span></div>
+<div class="p"><div class="body"><span class="nm">산정동성당 (가톨릭 목포성지)</span><span class="ds">대한민국 첫 준대성전(700석). 한국 레지오 마리애 발상지</span></div><span class="t">40분</span></div>
+<div class="p"><div class="body"><span class="nm">목포근대역사관 1·2관</span><span class="ds">옛 일본영사관·동양척식주식회사 건물</span></div><span class="t">1시간 40분</span></div>
+<div class="p"><div class="body"><span class="nm">유달산</span><span class="ds">목포 시내와 다도해 조망. 해질녘에 갈 생각</span></div><span class="t">1시간 20분</span></div>
+<h2>진도 · 해남</h2>
+<div class="p"><div class="body"><span class="nm">울돌목 (명량대첩 유적)</span><span class="ds">진도대교 아래 좁은 물길. 명량해전 현장이라 물살이 빠르다</span></div><span class="t">40분</span></div>
+<div class="p"><div class="body"><span class="nm">진도 운림산방</span><span class="ds">남종화의 산실. 첨찰산 아래 연못과 화실. 매주 월 휴관이라 요일을 맞춰야 한다</span></div><span class="t">1시간 30분</span></div>
+<h2>순천</h2>
+<div class="p"><div class="body"><span class="nm">순천만국가정원</span><span class="ds">넓다. 반나절 걸린다는 얘기가 많던데 실제로 어떤지 궁금</span></div><span class="t">2시간 45분</span></div>
+<div class="p"><div class="body"><span class="nm">순천만습지</span><span class="ds">갈대밭. 국가정원 표로 같이 볼 수 있다. ★국가정원에서 7.5km 떨어져 있다</span></div><span class="t">1시간 40분</span></div>
+<h2>광주</h2>
+<div class="p"><div class="body"><span class="nm">국립아시아문화전당(ACC)</span><span class="ds">규모가 커서 반나절로 잡았는데 이게 맞는지 모르겠다</span></div><span class="t">3시간 30분</span></div>
+<div class="p"><div class="body"><span class="nm">양림동 근대역사문화마을</span><span class="ds">선교사 사택·근대 가옥이 남은 동네. 걸어서 본다</span></div><span class="t">1시간 35분</span></div>
+<div class="p"><div class="body"><span class="nm">사직공원 전망타워</span><span class="ds">무료. 광주 시내 야경</span></div><span class="t">1시간</span></div>
+<div class="p"><div class="body"><span class="nm">1913송정역시장</span><span class="ds">오래된 시장을 리모델링한 곳</span></div><span class="t">1시간 20분</span></div>
+<div class="p"><div class="body"><span class="nm">국립광주박물관</span><span class="ds">무료</span></div><span class="t">2시간</span></div>
+<h2>담양</h2>
+<div class="p"><div class="body"><span class="nm">죽녹원</span><span class="ds">대나무 숲길</span></div><span class="t">1시간 30분</span></div>
+<div class="p"><div class="body"><span class="nm">메타세쿼이아 가로수길</span></div><span class="t">40분</span></div>
+<div class="p"><div class="body"><span class="nm">소쇄원</span><span class="ds">조선 시대 민간 정원. ★담양 남쪽 끝이라 가로수길에서 좀 멀다</span></div><span class="t">1시간</span></div>
+<div class="p"><div class="body"><span class="nm">광주호 호수생태원</span><span class="ds">무료. 평탄한 데크길</span></div><span class="t">1시간 10분</span></div>
+<h2>해남 · 강진</h2>
+<div class="p"><div class="body"><span class="nm">해남 대흥사</span><span class="ds">유네스코 세계유산 산사 7곳 중 하나. 두륜산 자락</span></div><span class="t">1시간 30분</span></div>
+<div class="p"><div class="body"><span class="nm">강진 다산초당</span><span class="ds">정약용이 유배 18년 중 11년을 지낸 곳. 야외</span></div><span class="t">1시간 55분</span></div>
+<h2>보성 · 여수</h2>
+<div class="p"><div class="body"><span class="nm">보성 대한다원</span><span class="ds">계단식 녹차밭과 삼나무길</span></div><span class="t">1시간 40분</span></div>
+<div class="p"><div class="body"><span class="nm">여수 향일암</span><span class="ds">바다를 내려다보는 절벽 암자. 계단이 많다고 들었다</span></div><span class="t">1시간 30분</span></div>
+<h2>완주</h2>
+<div class="p"><div class="body"><span class="nm">전북도립미술관</span><span class="ds">무료. 모악산 능선과 구이저수지를 낀 자리</span></div><span class="t">1시간 10분</span></div>
+<div class="foot">체류시간은 내가 잡아둔 예상치야. 이동시간은 뺐고 순서도 실제 동선이랑 달라.</div>
+</div>
+<a href="../" style="position:fixed;left:12px;top:12px;z-index:99999;
+background:rgba(255,255,255,.94);border:1px solid #e4dfd5;border-radius:8px;padding:6px 11px;
+font:13px -apple-system,'Segoe UI','Malgun Gothic',sans-serif;color:#8a5a2b;
+text-decoration:none;box-shadow:0 1px 4px rgba(0,0,0,.08)">← 목차</a>
